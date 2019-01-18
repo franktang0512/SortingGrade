@@ -22,3 +22,7 @@ C:\Users\franky\Desktop\test\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.pd
 C:\Users\franky\Desktop\新增資料夾\SortingGrade\ScoreSorting\ScoreSorting\bin\Debug\ScoreSorting.exe.config
 C:\Users\franky\Desktop\新增資料夾\SortingGrade\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.exe
 C:\Users\franky\Desktop\新增資料夾\SortingGrade\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.pdb
+C:\Users\franky\Desktop\test\ScoreSorting\ScoreSorting\bin\Debug\ScoreSorting.exe.manifest
+C:\Users\franky\Desktop\test\ScoreSorting\ScoreSorting\bin\Debug\ScoreSorting.application
+C:\Users\franky\Desktop\test\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.exe.manifest
+C:\Users\franky\Desktop\test\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.application

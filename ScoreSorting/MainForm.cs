@@ -12,7 +12,7 @@ namespace ScoreSorting
 {
     public partial class MainForm : Form
     {
-
+        public string path;//../../TestResult.txt
         public ScoreSortingControll control = new ScoreSortingControll("../../TestResult.txt");
         public DataGridViewRowCollection rows;
 
@@ -45,10 +45,7 @@ namespace ScoreSorting
             /*用平均來排序*/
             control.students.Sort((delegate(Student x, Student y)
             {
-                if (x.avg == null && y.avg == null) return 0;
-                else if (x.avg == null) return -1;
-                else if (y.avg == null) return 1;
-                else return x.avg.CompareTo(y.avg);
+                 return x.avg.CompareTo(y.avg);
 
             })); control.students.Reverse();
 
@@ -87,7 +84,15 @@ namespace ScoreSorting
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "Select file";
+            dialog.InitialDirectory = ".\\";
+            dialog.Filter = "";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                //this.path = dialog.FileName;
+                //MessageBox.Show(dialog.FileName);
+            }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
