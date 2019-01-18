@@ -1,0 +1,10 @@
+C:\Users\franky\Desktop\test\partical\ScoreSorting\ScoreSorting\bin\Release\ScoreSorting.exe.config
+C:\Users\franky\Desktop\test\partical\ScoreSorting\ScoreSorting\bin\Release\ScoreSorting.exe
+C:\Users\franky\Desktop\test\partical\ScoreSorting\ScoreSorting\bin\Release\ScoreSorting.pdb
+C:\Users\franky\Desktop\test\partical\ScoreSorting\ScoreSorting\obj\Release\ScoreSorting.Properties.Resources.resources
+C:\Users\franky\Desktop\test\partical\ScoreSorting\ScoreSorting\obj\Release\ScoreSorting.csproj.GenerateResource.Cache
+C:\Users\franky\Desktop\test\partical\ScoreSorting\ScoreSorting\obj\Release\ScoreSorting.exe
+C:\Users\franky\Desktop\test\partical\ScoreSorting\ScoreSorting\obj\Release\ScoreSorting.pdb
+C:\Users\franky\Desktop\test\partical\ScoreSorting\ScoreSorting\obj\Release\ScoreSorting.csprojResolveAssemblyReference.cache
+C:\Users\franky\Desktop\test\partical\ScoreSorting\ScoreSorting\obj\Release\ScoreSorting.MainForm.resources
+C:\Users\franky\Desktop\test\partical\ScoreSorting\ScoreSorting\obj\Release\ScoreSorting.Weighted.resources

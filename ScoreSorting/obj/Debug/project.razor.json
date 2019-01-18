@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\Users\\franky\\Desktop\\test\\partical\\ScoreSorting\\ScoreSorting\\ScoreSorting.csproj",
+  "TargetFramework": "v4.5",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}
