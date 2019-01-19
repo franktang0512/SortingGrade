@@ -26,3 +26,17 @@ C:\Users\franky\Desktop\test\ScoreSorting\ScoreSorting\bin\Debug\ScoreSorting.ex
 C:\Users\franky\Desktop\test\ScoreSorting\ScoreSorting\bin\Debug\ScoreSorting.application
 C:\Users\franky\Desktop\test\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.exe.manifest
 C:\Users\franky\Desktop\test\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.application
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\bin\Debug\ScoreSorting.exe.config
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.exe
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.pdb
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\bin\Debug\ScoreSorting.exe.manifest
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\bin\Debug\ScoreSorting.application
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\bin\Debug\ScoreSorting.exe
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\bin\Debug\ScoreSorting.pdb
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.csprojResolveAssemblyReference.cache
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.MainForm.resources
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.Properties.Resources.resources
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.Weighted.resources
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.csproj.GenerateResource.Cache
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.exe.manifest
+C:\Users\franky\Desktop\ScoreSorting\ScoreSorting\obj\Debug\ScoreSorting.application

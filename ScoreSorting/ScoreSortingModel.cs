@@ -18,11 +18,11 @@ namespace ScoreSorting
             this.Chinese = Chinese;
             this.Mathematics = Mathematics;
             this.English = English;
-            //this.avg = (Chinese + Mathematics + English) / 3;
         }
         public void CalculateGrade(double ch, double ma, double en)
         {
-            this.avg= (this.Chinese*ch+this.Mathematics*ma+this.English*en)/((ch+ma+en)==0?3:(ch+ma+en));
+            this.avg = Math.Round((this.Chinese * ch + this.Mathematics * ma + this.English * en) / ((ch + ma + en) == 0 ? 3 : (ch + ma + en)), 2,MidpointRounding.AwayFromZero);
+            //Math.Round(數值, 小數位數, MidpointRounding.AwayFromZero)
         }
 
 

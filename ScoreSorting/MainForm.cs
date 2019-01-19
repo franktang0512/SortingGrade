@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,8 @@ namespace ScoreSorting
             InitializeComponent();
             MakeTable();
         }
+
+        //load the 
         public void MakeTable()
         {
             rows = dataGridView1.Rows;
@@ -30,27 +33,23 @@ namespace ScoreSorting
             }
 
         }
+        //complete data table
         public void MakeWholeTable(double ch, double ma, double en)
         {
             rows = dataGridView1.Rows;
             int i = 0;
-            foreach (Student s in control.students)
+            foreach (Student s in this.control.students)
             {
-                //計算平均
+                //計算加權平均
                 s.CalculateGrade(ch, ma, en);
 
-                //rows.Add(new Object[] { s.ID, s.name, s.Chinese, s.Mathematics, s.English,s.avg,++i});
             }
 
-            /*用平均來排序*/
-            control.students.Sort((delegate(Student x, Student y)
-            {
-                 return x.avg.CompareTo(y.avg);
-
-            })); control.students.Reverse();
-
+            /*用平均、學號來排序*/
+            this.control.students=this.control.students.OrderByDescending(o => o.avg).ThenByDescending(o => o.ID).ToList();//.ThenBy(o => o.ID);
+            
             //顯示在表格中
-            foreach (Student s in control.students)
+            foreach (Student s in this.control.students)
             {
                 rows.Add(new Object[] { s.ID, s.name, s.Chinese, s.Mathematics, s.English, s.avg, ++i });
             }
