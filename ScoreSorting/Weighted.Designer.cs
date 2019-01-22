@@ -34,7 +34,6 @@
             this.ch = new System.Windows.Forms.TextBox();
             this.ma = new System.Windows.Forms.TextBox();
             this.en = new System.Windows.Forms.TextBox();
-            this.Cancel = new System.Windows.Forms.Button();
             this.OK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -86,19 +85,9 @@
             this.en.Size = new System.Drawing.Size(100, 22);
             this.en.TabIndex = 5;
             // 
-            // Cancel
-            // 
-            this.Cancel.Location = new System.Drawing.Point(46, 208);
-            this.Cancel.Name = "Cancel";
-            this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 6;
-            this.Cancel.Text = "Cancel";
-            this.Cancel.UseVisualStyleBackColor = true;
-            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
-            // 
             // OK
             // 
-            this.OK.Location = new System.Drawing.Point(166, 208);
+            this.OK.Location = new System.Drawing.Point(94, 195);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(75, 23);
             this.OK.TabIndex = 7;
@@ -112,7 +101,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.OK);
-            this.Controls.Add(this.Cancel);
             this.Controls.Add(this.en);
             this.Controls.Add(this.ma);
             this.Controls.Add(this.ch);
@@ -134,7 +122,6 @@
         private System.Windows.Forms.TextBox ch;
         private System.Windows.Forms.TextBox ma;
         private System.Windows.Forms.TextBox en;
-        private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.Button OK;
     }
 }

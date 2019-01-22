@@ -25,11 +25,24 @@ namespace ScoreSorting
             ContentTitle = null;
             ReadTxt(filepath);
         }
-        public List<Student> getStudents() {
+        private List<Student> getStudents() {
             return students;        
         }
-        public void setStudent(List<Student> s) {
+        private void setStudent(List<Student> s) {
             this.students = s;        
+        }
+
+        public void CalculateGrades(string ch,string ma,string en) {
+            //calculate grades
+            foreach (Student student in this.getStudents())
+            {
+                student.CalculateGrade(Convert.ToDouble(ch), Convert.ToDouble(ma), Convert.ToDouble(en));
+            }
+        }
+
+        public void Sort() {
+            /*Sort ordered by averages*/
+            this.setStudent(this.getStudents().OrderByDescending(o => o.avg).ThenByDescending(o => o.ID).ToList());
         }
 
         void ReadTxt(string filepath)
@@ -64,15 +77,15 @@ namespace ScoreSorting
             sw.Close();						
         }
         //argument 為加權國數英
-        void Sorting(double ch,double ma,double en)
-        {
-            List<Student> weightedstudents= new List<Student>();
-            foreach (Student student in this.students) {
+        //void Sorting(double ch,double ma,double en)
+        //{
+        //    List<Student> weightedstudents= new List<Student>();
+        //    foreach (Student student in this.students) {
                 
 
-            }
-            this.students.ElementAt(1);
-        }
+        //    }
+        //    this.students.ElementAt(1);
+        //}
         //讀取原檔案
         public void Reload() {
             ReadTxt(this.filepath);        

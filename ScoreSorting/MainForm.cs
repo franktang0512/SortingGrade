@@ -17,19 +17,6 @@ namespace ScoreSorting
         public ScoreSortingControll control = new ScoreSortingControll("../../TestResult.txt");
         public DataGridViewRowCollection rows;
 
-        private double[] weightedvalues = new double[3];//[ch,ma,en]
-
-        public string[] WeiVal
-        {
-            set
-            {
-                for (int i = 0; i < value.Length; i++)
-                {
-                    weightedvalues[i] = Convert.ToDouble(value[i]);
-
-                }
-            }
-        }
         public MainForm()
         {
             InitializeComponent();
@@ -66,19 +53,6 @@ namespace ScoreSorting
 
         }
 
-        //private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    OpenFileDialog dialog = new OpenFileDialog();
-        //    dialog.Title = "Select file";
-        //    dialog.InitialDirectory = ".\\";
-        //    dialog.Filter = "";
-        //    if (dialog.ShowDialog() == DialogResult.OK)
-        //    {
-        //        //this.path = dialog.FileName;
-        //        //MessageBox.Show(dialog.FileName);
-        //    }
-        //}
-
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.control.SaveTxt();
@@ -106,24 +80,12 @@ namespace ScoreSorting
         {
             //Show WeightedForm and get weights
             Weighted WeightedForm = new Weighted();
-            WeightedForm.Owner = this;
             WeightedForm.ShowDialog();
 
-            if (weightedvalues[0] != 0 && weightedvalues[1] != 0 && weightedvalues[2] != 0)
-            {
-                //Clear previous data in table 
-                foreach (Student student in this.control.getStudents())
-                {
-                    student.CalculateGrade(weightedvalues[0], weightedvalues[1], weightedvalues[2]);
-                }
-
-                /*Sort ordered by averages*/
-                this.control.setStudent(this.control.getStudents().OrderByDescending(o => o.avg).ThenByDescending(o => o.ID).ToList());//.ThenBy(o => o.ID);
-
-                //complete the table of all students with average and rank
-                MakeWholeTable();
-            
-            }
+            this.control.CalculateGrades(WeightedForm.getChineseWeight(), WeightedForm.getMathWeight(), WeightedForm.getEnglishWeight());
+            this.control.Sort();
+            //complete the table of all students with average and rank
+            MakeWholeTable();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

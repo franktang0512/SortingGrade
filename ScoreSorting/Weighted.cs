@@ -12,21 +12,33 @@ namespace ScoreSorting
 {
     public partial class Weighted : Form
     {
+
         public Weighted()
         {
             InitializeComponent();
         }
+
+        public string getChineseWeight()
+        {
+            return this.ch.Text.ToString();
+        }
+        public string getMathWeight()
+        {
+            return this.ma.Text.ToString();
+        }
+        public string getEnglishWeight()
+        {
+            return this.en.Text.ToString();
+        }
         private void OK_Click(object sender, EventArgs e)
         {
-            MainForm mainform = (MainForm)this.Owner;//Form2的父視窗指定賦與lForm1 
+
             try
             {
                 //check if users' input is numeric
                 double dtest = Convert.ToDouble(ch.Text.ToString());
                 dtest = Convert.ToDouble(ma.Text.ToString());
                 dtest = Convert.ToDouble(en.Text.ToString());
-                //trans the weighted data to mainform
-                mainform.WeiVal = new string[] { ch.Text.ToString(), ma.Text.ToString(), en.Text.ToString() };
             }
             catch
             {
