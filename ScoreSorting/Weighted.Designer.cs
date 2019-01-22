@@ -46,7 +46,6 @@
             this.Chinese.Size = new System.Drawing.Size(42, 12);
             this.Chinese.TabIndex = 0;
             this.Chinese.Text = "Chinese";
-            this.Chinese.Click += new System.EventHandler(this.label1_Click);
             // 
             // Math
             // 
@@ -72,7 +71,6 @@
             this.ch.Name = "ch";
             this.ch.Size = new System.Drawing.Size(100, 22);
             this.ch.TabIndex = 3;
-            this.ch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // ma
             // 
@@ -123,7 +121,6 @@
             this.Controls.Add(this.Chinese);
             this.Name = "Weighted";
             this.Text = "Weighted";
-            this.Load += new System.EventHandler(this.Weighted_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -69,7 +69,6 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(743, 268);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // 學號
             // 
@@ -136,7 +135,6 @@
             this.File.Size = new System.Drawing.Size(43, 22);
             this.File.Text = "File";
             this.File.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.File.ButtonClick += new System.EventHandler(this.File_ButtonClick);
             // 
             // saveToolStripMenuItem
             // 
@@ -203,7 +201,6 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "MainForm";
             this.Text = "ScoreSorting";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

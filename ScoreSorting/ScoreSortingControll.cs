@@ -14,7 +14,7 @@ namespace ScoreSorting
         //標頭
         string[] ContentTitle;
         //所有學生名單
-        public List<Student> students;
+        List<Student> students;
         
         //建構學生資料名單
         public ScoreSortingControll(string filepath)
@@ -24,6 +24,12 @@ namespace ScoreSorting
             students = new List<Student>();
             ContentTitle = null;
             ReadTxt(filepath);
+        }
+        public List<Student> getStudents() {
+            return students;        
+        }
+        public void setStudent(List<Student> s) {
+            this.students = s;        
         }
 
         void ReadTxt(string filepath)

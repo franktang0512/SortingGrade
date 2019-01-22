@@ -17,87 +17,67 @@ namespace ScoreSorting
         public ScoreSortingControll control = new ScoreSortingControll("../../TestResult.txt");
         public DataGridViewRowCollection rows;
 
+        private double[] weightedvalues = new double[3];//[ch,ma,en]
+
+        public string[] WeiVal
+        {
+            set
+            {
+                for (int i = 0; i < value.Length; i++)
+                {
+                    weightedvalues[i] = Convert.ToDouble(value[i]);
+
+                }
+            }
+        }
         public MainForm()
         {
             InitializeComponent();
             MakeTable();
         }
 
-        //load the 
+        //load the original data
         public void MakeTable()
         {
             rows = dataGridView1.Rows;
-            foreach (Student s in control.students)
+            foreach (Student s in control.getStudents())
             {
                 rows.Add(new Object[] { s.ID, s.name, s.Chinese, s.Mathematics, s.English });
             }
 
         }
-        //complete data table
-        public void MakeWholeTable(double ch, double ma, double en)
+        //complete the table with average and rank
+        public void MakeWholeTable()
         {
             rows = dataGridView1.Rows;
             int i = 0;
-            foreach (Student s in this.control.students)
-            {
-                //計算加權平均
-                s.CalculateGrade(ch, ma, en);
 
+            //clear previous data in table
+            foreach (Student s in this.control.getStudents())
+            {
+                this.rows.RemoveAt(0);
             }
 
-            /*用平均、學號來排序*/
-            this.control.students=this.control.students.OrderByDescending(o => o.avg).ThenByDescending(o => o.ID).ToList();//.ThenBy(o => o.ID);
-            
-            //顯示在表格中
-            foreach (Student s in this.control.students)
+            //Show all students in table
+            foreach (Student s in this.control.getStudents())
             {
                 rows.Add(new Object[] { s.ID, s.name, s.Chinese, s.Mathematics, s.English, s.avg, ++i });
             }
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void toolStripComboBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void File_ButtonClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Help_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Title = "Select file";
-            dialog.InitialDirectory = ".\\";
-            dialog.Filter = "";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                //this.path = dialog.FileName;
-                //MessageBox.Show(dialog.FileName);
-            }
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Program Name: Score Sorter\nProgram Design: Frank Tang\nProgram Version:0.0.1", "", MessageBoxButtons.OKCancel, MessageBoxIcon.None);
-        }
+        //private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    OpenFileDialog dialog = new OpenFileDialog();
+        //    dialog.Title = "Select file";
+        //    dialog.InitialDirectory = ".\\";
+        //    dialog.Filter = "";
+        //    if (dialog.ShowDialog() == DialogResult.OK)
+        //    {
+        //        //this.path = dialog.FileName;
+        //        //MessageBox.Show(dialog.FileName);
+        //    }
+        //}
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -107,7 +87,7 @@ namespace ScoreSorting
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            foreach (Student student in control.students)
+            foreach (Student student in control.getStudents())
             {
                 rows.RemoveAt(0);
             }
@@ -124,13 +104,31 @@ namespace ScoreSorting
 
         private void sortToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            //Show WeightedForm and get weights
             Weighted WeightedForm = new Weighted();
             WeightedForm.Owner = this;
-            WeightedForm.Show();
+            WeightedForm.ShowDialog();
 
+            if (weightedvalues[0] != 0 && weightedvalues[1] != 0 && weightedvalues[2] != 0)
+            {
+                //Clear previous data in table 
+                foreach (Student student in this.control.getStudents())
+                {
+                    student.CalculateGrade(weightedvalues[0], weightedvalues[1], weightedvalues[2]);
+                }
+
+                /*Sort ordered by averages*/
+                this.control.setStudent(this.control.getStudents().OrderByDescending(o => o.avg).ThenByDescending(o => o.ID).ToList());//.ThenBy(o => o.ID);
+
+                //complete the table of all students with average and rank
+                MakeWholeTable();
+            
+            }
         }
 
-
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Program Name: Score Sorter\nProgram Design: Frank Tang\nProgram Version:0.0.1", "", MessageBoxButtons.OKCancel, MessageBoxIcon.None);
+        }
     }
 }
