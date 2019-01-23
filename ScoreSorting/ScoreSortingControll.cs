@@ -46,7 +46,7 @@ namespace ScoreSorting
 
         public void Sort() {
             /*Sort ordered by averages*/
-            this.setStudent(this.getStudents().OrderByDescending(o => o.getAverage()).ThenByDescending(o => o.getID()).ToList());
+            this.setStudent(this.getStudents().OrderByDescending(o => o.getAverage()).ThenBy(o => o.getID()).ToList());
         }
 
         void ReadTxt(string filepath)

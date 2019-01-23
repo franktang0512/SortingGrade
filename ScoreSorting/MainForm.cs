@@ -14,8 +14,8 @@ namespace ScoreSorting
     public partial class MainForm : Form
     {
         public string path;//../../TestResult.txt
-        public ScoreSortingControll control = new ScoreSortingControll("../../TestResult.txt");
-        public DataGridViewRowCollection rows;
+        private ScoreSortingControll control = new ScoreSortingControll("../../TestResult.txt");
+        private DataGridViewRowCollection rows;
 
         public MainForm()
         {
@@ -23,14 +23,14 @@ namespace ScoreSorting
             MakeTable();
         }
 
-        void ClearTableData(){
+        private void ClearTableData(){
             for (int i = 0; i < this.control.getStudentsCount(); i++)
             {
                 this.rows.RemoveAt(0);
             }        
         }
         //load the original data
-        public void MakeTable()
+        private void MakeTable()
         {
             rows = dataGridView1.Rows;
             for(int i =0;i<this.control.getStudentsCount();i++){
