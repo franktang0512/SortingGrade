@@ -23,34 +23,43 @@ namespace ScoreSorting
             MakeTable();
         }
 
+        void ClearTableData(){
+            for (int i = 0; i < this.control.getStudentsCount(); i++)
+            {
+                this.rows.RemoveAt(0);
+            }        
+        }
         //load the original data
         public void MakeTable()
         {
             rows = dataGridView1.Rows;
-            foreach (Student s in control.getStudents())
-            {
-                rows.Add(new Object[] { s.ID, s.name, s.Chinese, s.Mathematics, s.English });
+            for(int i =0;i<this.control.getStudentsCount();i++){
+                rows.Add(new Object[] { 
+                    this.control.getStudent(i).getID(), 
+                    this.control.getStudent(i).getName(), 
+                    this.control.getStudent(i).getChinese(), 
+                    this.control.getStudent(i).getMathematics(), 
+                    this.control.getStudent(i).getEnglish() 
+                });
             }
-
         }
         //complete the table with average and rank
         public void MakeWholeTable()
-        {
-            rows = dataGridView1.Rows;
-            int i = 0;
-
-            //clear previous data in table
-            foreach (Student s in this.control.getStudents())
+        {           
+            //rows = dataGridView1.Rows;
+            this.ClearTableData();
+            for (int i = 0; i < this.control.getStudentsCount(); i++)
             {
-                this.rows.RemoveAt(0);
+                rows.Add(new Object[] { 
+                    this.control.getStudent(i).getID(), 
+                    this.control.getStudent(i).getName(), 
+                    this.control.getStudent(i).getChinese(), 
+                    this.control.getStudent(i).getMathematics(), 
+                    this.control.getStudent(i).getEnglish(),
+                    this.control.getStudent(i).getAverage(),
+                    i+1
+                });
             }
-
-            //Show all students in table
-            foreach (Student s in this.control.getStudents())
-            {
-                rows.Add(new Object[] { s.ID, s.name, s.Chinese, s.Mathematics, s.English, s.avg, ++i });
-            }
-
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,10 +70,7 @@ namespace ScoreSorting
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            foreach (Student student in control.getStudents())
-            {
-                rows.RemoveAt(0);
-            }
+            this.ClearTableData();
             this.control.Cleardata();
             this.control.Reload();
             this.MakeTable();
@@ -78,14 +84,20 @@ namespace ScoreSorting
 
         private void sortToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Show WeightedForm and get weights
-            Weighted WeightedForm = new Weighted();
-            WeightedForm.ShowDialog();
+            try
+            {
+                //Show WeightedForm and get weights
+                Weighted WeightedForm = new Weighted();
+                WeightedForm.ShowDialog();
 
-            this.control.CalculateGrades(WeightedForm.getChineseWeight(), WeightedForm.getMathWeight(), WeightedForm.getEnglishWeight());
-            this.control.Sort();
-            //complete the table of all students with average and rank
-            MakeWholeTable();
+                this.control.CalculateGrades(WeightedForm.getChineseWeight(), WeightedForm.getMathWeight(), WeightedForm.getEnglishWeight());
+                this.control.Sort();
+                //complete the table of all students with average and rank
+                MakeWholeTable();
+            }
+            catch { 
+            
+            }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

@@ -31,6 +31,10 @@ namespace ScoreSorting
         private void setStudent(List<Student> s) {
             this.students = s;        
         }
+        public int getStudentsCount() {
+
+            return getStudents().Count;
+        }
 
         public void CalculateGrades(string ch,string ma,string en) {
             //calculate grades
@@ -42,7 +46,7 @@ namespace ScoreSorting
 
         public void Sort() {
             /*Sort ordered by averages*/
-            this.setStudent(this.getStudents().OrderByDescending(o => o.avg).ThenByDescending(o => o.ID).ToList());
+            this.setStudent(this.getStudents().OrderByDescending(o => o.getAverage()).ThenByDescending(o => o.getID()).ToList());
         }
 
         void ReadTxt(string filepath)
@@ -91,8 +95,14 @@ namespace ScoreSorting
             ReadTxt(this.filepath);        
         }
 
-        public void Cleardata(){
+        public void Cleardata()
+        {
             this.students.Clear();
+        }
+
+        public Student getStudent(int i){
+            return this.students.ElementAt(i);
+        
         }
     }
 }
