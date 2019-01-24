@@ -92,16 +92,26 @@ namespace ScoreSorting
         //存檔
         public async void SaveTxt()
         {
-            // 建立檔案串流
-            StreamWriter sw = new StreamWriter(filepath);
-            // 寫入標頭
-            sw.WriteLine(string.Join(",", ContentTitle));			
-            foreach(Student student in students){
-                //寫入學生資料
-                sw.WriteLine(string.Join(",",student.tostring()));            
+            try {
+                // 建立檔案串流
+                using (StreamWriter writer = File.CreateText(filepath))
+                {
+                    // 寫入標頭
+                    writer.WriteLine(string.Join(",", ContentTitle));
+                    foreach (Student student in students)
+                    {
+                        //寫入學生資料
+                        writer.WriteLine(string.Join(",", student.tostring()));
+                    }
+                }            
             }
-            // 關閉串流
-            sw.Close();						
+            catch (Exception e)
+            {
+                Console.WriteLine("Fail to write the file:");
+                Console.WriteLine(e.Message);
+
+            }
+				
         }
 
         public void Reload() {
