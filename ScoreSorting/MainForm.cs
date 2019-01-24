@@ -23,17 +23,19 @@ namespace ScoreSorting
             MakeTable();
         }
 
-        private void ClearTableData(){
+        private void ClearTableData()
+        {
             for (int i = 0; i < this.control.getStudentsCount(); i++)
             {
                 this.rows.RemoveAt(0);
-            }        
+            }
         }
         //load the original data
         private void MakeTable()
         {
             rows = dataGridView1.Rows;
-            for(int i =0;i<this.control.getStudentsCount();i++){
+            for (int i = 0; i < this.control.getStudentsCount(); i++)
+            {
                 rows.Add(new Object[] { 
                     this.control.getStudent(i).getID(), 
                     this.control.getStudent(i).getName(), 
@@ -45,20 +47,57 @@ namespace ScoreSorting
         }
         //complete the table with average and rank
         public void MakeWholeTable()
-        {           
+        {
             //rows = dataGridView1.Rows;
             this.ClearTableData();
+            int rank = 0;
             for (int i = 0; i < this.control.getStudentsCount(); i++)
             {
-                rows.Add(new Object[] { 
-                    this.control.getStudent(i).getID(), 
-                    this.control.getStudent(i).getName(), 
-                    this.control.getStudent(i).getChinese(), 
-                    this.control.getStudent(i).getMathematics(), 
-                    this.control.getStudent(i).getEnglish(),
-                    this.control.getStudent(i).getAverage(),
-                    i+1
-                });
+                if (i == 0)
+                {
+                    rank += 1;
+                    rows.Add(new Object[] { 
+                        this.control.getStudent(i).getID(), 
+                        this.control.getStudent(i).getName(), 
+                        this.control.getStudent(i).getChinese(), 
+                        this.control.getStudent(i).getMathematics(), 
+                        this.control.getStudent(i).getEnglish(),
+                        this.control.getStudent(i).getAverage(),
+                        rank
+                    });
+
+                }
+                else
+                {
+                    if (this.control.getStudent(i).getAverage() == this.control.getStudent(i - 1).getAverage())
+                    {
+                        rows.Add(new Object[] { 
+                            this.control.getStudent(i).getID(), 
+                            this.control.getStudent(i).getName(), 
+                            this.control.getStudent(i).getChinese(), 
+                            this.control.getStudent(i).getMathematics(), 
+                            this.control.getStudent(i).getEnglish(),
+                            this.control.getStudent(i).getAverage(),
+                            rank
+                        });
+
+                    }
+                    else {
+                        rows.Add(new Object[] { 
+                            this.control.getStudent(i).getID(), 
+                            this.control.getStudent(i).getName(), 
+                            this.control.getStudent(i).getChinese(), 
+                            this.control.getStudent(i).getMathematics(), 
+                            this.control.getStudent(i).getEnglish(),
+                            this.control.getStudent(i).getAverage(),
+                            ++rank
+                        });
+                    
+                    }
+
+
+                }
+
             }
         }
 
@@ -95,8 +134,9 @@ namespace ScoreSorting
                 //complete the table of all students with average and rank
                 MakeWholeTable();
             }
-            catch { 
-            
+            catch
+            {
+
             }
         }
 
