@@ -49,22 +49,18 @@ namespace ScoreSorting
             this.setStudent(this.getStudents().OrderByDescending(o => o.getAverage()).ThenBy(o => o.getID()).ToList());
         }
 
-        void ReadTxt(string filepath)
-        {
-            //只讀出 TestResult.txt全部的字
-
-            StreamReader str = new StreamReader(filepath);
-
-            ContentTitle = str.ReadLine().Split(',');
-            //資料need to handle
-            while (!str.EndOfStream)
-            {
-                string filecontent = str.ReadLine();
-                string[] data = filecontent.Split(',');
-                students.Add(new Student(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]), Convert.ToDouble(data[4])));
-
+        void OpenFile() {
+            //
+            
+            if (!File.Exists(filepath)) { 
+            
             }
-            str.Close();
+        }
+
+
+        async void ReadTxt(string filepath)
+        {            
+
         }
         //存檔
         public void SaveTxt()
@@ -101,7 +97,10 @@ namespace ScoreSorting
         }
 
         public Student getStudent(int i){
-            return this.students.ElementAt(i);
+            //return this.students.ElementAt(i);
+            Student s = new Student(this.students.ElementAt(i).getID(), this.students.ElementAt(i).getName(), this.students.ElementAt(i).getChinese(), this.students.ElementAt(i).getMathematics(), this.students.ElementAt(i).getEnglish());
+            s.CalculateGrade(0,0,0);
+            return s;
         
         }
     }

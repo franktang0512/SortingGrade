@@ -51,6 +51,7 @@ namespace ScoreSorting
             //rows = dataGridView1.Rows;
             this.ClearTableData();
             int rank = 0;
+            
             for (int i = 0; i < this.control.getStudentsCount(); i++)
             {
                 if (i == 0)
@@ -143,6 +144,11 @@ namespace ScoreSorting
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Program Name: Score Sorter\nProgram Design: Frank Tang\nProgram Version:0.0.1", "", MessageBoxButtons.OKCancel, MessageBoxIcon.None);
+        }
+
+        private void Open_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

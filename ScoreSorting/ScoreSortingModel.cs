@@ -24,6 +24,11 @@ namespace ScoreSorting
             this.avg = Math.Round((this.Chinese * ch + this.Mathematics * ma + this.English * en) / ((ch + ma + en) == 0 ? 3 : (ch + ma + en)), 2,MidpointRounding.AwayFromZero);
             //Math.Round(value, round to 2, MidpointRounding.AwayFromZero)
         }
+        //public void setAverage(double average)
+        //{
+        //    this.avg = average;
+        //}
+
         public string getID() { return this.ID; }
         public string getName() { return this.name; }
         public double getChinese() { return this.Chinese; }

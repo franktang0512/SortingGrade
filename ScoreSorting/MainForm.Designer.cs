@@ -45,6 +45,7 @@
             this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Help = new System.Windows.Forms.ToolStripSplitButton();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Open = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -128,6 +129,7 @@
             this.File.AccessibleName = "";
             this.File.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Open,
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.File.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -139,14 +141,14 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -192,6 +194,13 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // Open
+            // 
+            this.Open.Name = "Open";
+            this.Open.Size = new System.Drawing.Size(152, 22);
+            this.Open.Text = "Open";
+            this.Open.Click += new System.EventHandler(this.Open_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -228,6 +237,7 @@
         private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
         private System.Windows.Forms.ToolStripSplitButton Help;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Open;
 
     }
 }

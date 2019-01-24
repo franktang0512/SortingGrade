@@ -68,3 +68,4 @@ C:\Users\franky\Desktop\test\SortingGrade\ScoreSorting\obj\Debug\ScoreSorting.We
 C:\Users\franky\Desktop\test\SortingGrade\ScoreSorting\obj\Debug\ScoreSorting.csproj.GenerateResource.Cache
 C:\Users\franky\Desktop\test\SortingGrade\ScoreSorting\obj\Debug\ScoreSorting.exe.manifest
 C:\Users\franky\Desktop\test\SortingGrade\ScoreSorting\obj\Debug\ScoreSorting.application
+C:\Users\franky\Desktop\test\SortingGrade\ScoreSorting\bin\Debug\ScoreSorting.XML
