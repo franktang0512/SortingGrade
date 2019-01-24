@@ -22,14 +22,6 @@ namespace ScoreSorting
             InitializeComponent();
             MakeTable();
         }
-
-        private void ClearTableData()
-        {
-            for (int i = 0; i < this.control.getStudentsCount(); i++)
-            {
-                this.rows.RemoveAt(0);
-            }
-        }
         //load the original data
         private void MakeTable()
         {
@@ -49,7 +41,7 @@ namespace ScoreSorting
         public void MakeWholeTable()
         {
             //rows = dataGridView1.Rows;
-            this.ClearTableData();
+            this.rows.Clear();
             int rank = 0;
             
             for (int i = 0; i < this.control.getStudentsCount(); i++)
@@ -110,7 +102,7 @@ namespace ScoreSorting
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            this.ClearTableData();
+            this.rows.Clear();
             this.control.Cleardata();
             this.control.Reload();
             this.MakeTable();
