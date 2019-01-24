@@ -89,7 +89,7 @@ namespace ScoreSorting
             
             }
         }
-        //存檔
+
         public async void SaveTxt()
         {
             try {
@@ -101,7 +101,7 @@ namespace ScoreSorting
                     foreach (Student student in students)
                     {
                         //寫入學生資料
-                        writer.WriteLine(string.Join(",", student.tostring()));
+                        await writer.WriteLineAsync(string.Join(",", student.tostring()));
                     }
                 }            
             }
