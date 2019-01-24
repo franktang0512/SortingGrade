@@ -59,25 +59,38 @@ namespace ScoreSorting
 
 
         async void ReadTxt(string filepath)
-        {            
-            using (StreamReader reader = File.OpenText(filepath))
+        {
+            if (File.Exists(filepath))
             {
-                Console.WriteLine("Opened file.");
+                try
+                {
+                    using (StreamReader reader = File.OpenText(filepath))
+                    {
+                        string title = await reader.ReadLineAsync();
+                        ContentTitle = title.Split(',');
 
-                string title = await reader.ReadLineAsync();
-                ContentTitle = title.Split(',');
-
-                while (!reader.EndOfStream) {
-
-                    string filecontent = reader.ReadLine();
-                    string[] data = filecontent.Split(',');
-                    students.Add(new Student(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]), Convert.ToDouble(data[4])));
-            
+                        while (!reader.EndOfStream)
+                        {
+                            string filecontent = reader.ReadLine();
+                            string[] data = filecontent.Split(',');
+                            students.Add(new Student(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]), Convert.ToDouble(data[4])));
+                        }
+                    }
                 }
+                catch (Exception e) {
+                    Console.WriteLine("Fail to read the file:");
+                    Console.WriteLine(e.Message);
+                
+                }
+                
+            }
+            else {
+                Console.WriteLine("File does not exist");
+            
             }
         }
         //存檔
-        public void SaveTxt()
+        public async void SaveTxt()
         {
             // 建立檔案串流
             StreamWriter sw = new StreamWriter(filepath);
@@ -90,17 +103,7 @@ namespace ScoreSorting
             // 關閉串流
             sw.Close();						
         }
-        //argument 為加權國數英
-        //void Sorting(double ch,double ma,double en)
-        //{
-        //    List<Student> weightedstudents= new List<Student>();
-        //    foreach (Student student in this.students) {
-                
 
-        //    }
-        //    this.students.ElementAt(1);
-        //}
-        //讀取原檔案
         public void Reload() {
             ReadTxt(this.filepath);        
         }
