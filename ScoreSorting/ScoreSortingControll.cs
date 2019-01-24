@@ -60,7 +60,21 @@ namespace ScoreSorting
 
         async void ReadTxt(string filepath)
         {            
+            using (StreamReader reader = File.OpenText(filepath))
+            {
+                Console.WriteLine("Opened file.");
 
+                string title = await reader.ReadLineAsync();
+                ContentTitle = title.Split(',');
+
+                while (!reader.EndOfStream) {
+
+                    string filecontent = reader.ReadLine();
+                    string[] data = filecontent.Split(',');
+                    students.Add(new Student(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]), Convert.ToDouble(data[4])));
+            
+                }
+            }
         }
         //存檔
         public void SaveTxt()
