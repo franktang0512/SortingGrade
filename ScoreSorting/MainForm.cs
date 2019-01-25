@@ -72,7 +72,7 @@ namespace ScoreSorting
                             this.control.getStudent(i).getMathematics(), 
                             this.control.getStudent(i).getEnglish(),
                             this.control.getStudent(i).getAverage(),
-                            ++rank
+                            rank
                         });
 
                     }

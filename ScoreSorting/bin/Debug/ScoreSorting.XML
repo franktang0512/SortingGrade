@@ -176,8 +176,7 @@
             <summary>
             Set student's ID if there's any change
             </summary>
-            <param name="id">Changed ID</param>
-            
+            <param name="id">Changed ID</param> 
         </member>
         <member name="M:ScoreSorting.Student.setName(System.String)">
             <summary>
