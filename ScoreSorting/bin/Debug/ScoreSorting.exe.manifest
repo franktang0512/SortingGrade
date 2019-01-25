@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScoreSorting.exe" size="21504">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScoreSorting.exe" size="23040">
       <assemblyIdentity name="ScoreSorting" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>DQWuRpGiXnCQxW0BAPGwv+gOoFJvIqtGlxBQRm0guvg=</dsig:DigestValue>
+        <dsig:DigestValue>xgvzJXZngFAJfBpQyuR+gZDLbJCn9Ilcx2IZ+K5HMkU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

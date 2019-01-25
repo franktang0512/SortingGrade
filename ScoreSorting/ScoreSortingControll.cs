@@ -9,14 +9,24 @@ namespace ScoreSorting
 {
     public class ScoreSortingControll
     {
-        //檔案路徑
+        /// <summary>
+        /// Where the file is
+        /// </summary>
         string filepath;
-        //標頭
-        string[] ContentTitle;
-        //所有學生名單
-        List<Student> students;
         
-        //建構學生資料名單
+        /// <summary>
+        /// Titles of table colums
+        /// </summary>
+        string[] ContentTitle;
+        /// <summary>
+        /// All students in list
+        /// </summary>
+        List<Student> students;
+
+        /// <summary>
+        /// Constructor for building students's data in the filepath
+        /// </summary>
+        /// <param name="filepath">Where the file going to be opened is</param>
         public ScoreSortingControll(string filepath)
         {
             //read data from../../TestResult.txt建構students
@@ -25,39 +35,67 @@ namespace ScoreSorting
             ContentTitle = null;
             ReadTxt(filepath);
         }
-        private List<Student> getStudents() {
-            return students;        
+        /// <summary>
+        /// Get students in list
+        /// </summary>
+        /// <returns>students</returns>
+        private List<Student> getStudents()
+        {
+            return students;
         }
-        private void setStudent(List<Student> s) {
-            this.students = s;        
+        /// <summary>
+        /// Set the students' data if there's any change on them
+        /// </summary>
+        /// <param name="s">Students which has changed to the list</param>
+        private void setStudent(List<Student> s)
+        {
+            this.students = s;
         }
-        public int getStudentsCount() {
+        /// <summary>
+        /// Get total count of sutdents
+        /// </summary>
+        /// <returns></returns>
+        public int getStudentsCount()
+        {
 
             return getStudents().Count;
         }
-
-        public void CalculateGrades(string ch,string ma,string en) {
+        /// <summary>
+        /// Calculate students' average with the weights
+        /// </summary>
+        /// <param name="ch">Chinese weights</param>
+        /// <param name="ma">Math weights</param>
+        /// <param name="en">English weights</param>
+        public void CalculateGrades(string ch, string ma, string en)
+        {
             //calculate grades
-            foreach (Student student in this.getStudents())
+            try
             {
-                student.CalculateGrade(Convert.ToDouble(ch), Convert.ToDouble(ma), Convert.ToDouble(en));
+                foreach (Student student in this.getStudents())
+                {
+                    student.CalculateGrade(Convert.ToDouble(ch), Convert.ToDouble(ma), Convert.ToDouble(en));
+                }
             }
-        }
+            catch (Exception e)
+            {
 
-        public void Sort() {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Probably the weight can't be converted to double");
+            }
+
+        }
+        /// <summary>
+        /// Sort the data with students' average and their ID
+        /// </summary>
+        public void Sort()
+        {
             /*Sort ordered by averages*/
             this.setStudent(this.getStudents().OrderByDescending(o => o.getAverage()).ThenBy(o => o.getID()).ToList());
         }
-
-        void OpenFile() {
-            //
-            
-            if (!File.Exists(filepath)) { 
-            
-            }
-        }
-
-
+        /// <summary>
+        /// Read the file in the filepath
+        /// </summary>
+        /// <param name="filepath">Filepath where the file's going to use</param>
         async void ReadTxt(string filepath)
         {
             if (File.Exists(filepath))
@@ -73,26 +111,42 @@ namespace ScoreSorting
                         {
                             string filecontent = reader.ReadLine();
                             string[] data = filecontent.Split(',');
-                            students.Add(new Student(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]), Convert.ToDouble(data[4])));
+                            try
+                            {
+                                students.Add(new Student(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]), Convert.ToDouble(data[4])));
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(e.Message);
+                                Console.WriteLine("Check if the string can be converted to double");
+                                break;
+
+                            }
+
                         }
                     }
                 }
-                catch (Exception e) {
+                catch (Exception e)
+                {
                     Console.WriteLine("Fail to read the file:");
                     Console.WriteLine(e.Message);
-                
+
                 }
-                
+
             }
-            else {
+            else
+            {
                 Console.WriteLine("File does not exist");
-            
+
             }
         }
-
+        /// <summary>
+        /// Save data of stuents if there's any change
+        /// </summary>
         public async void SaveTxt()
         {
-            try {
+            try
+            {
                 // 建立檔案串流
                 using (StreamWriter writer = File.CreateText(filepath))
                 {
@@ -100,35 +154,55 @@ namespace ScoreSorting
                     writer.WriteLine(string.Join(",", ContentTitle));
                     foreach (Student student in students)
                     {
-                        //寫入學生資料
-                        await writer.WriteLineAsync(string.Join(",", student.tostring()));
+                        try
+                        {   //寫入學生資料
+                            await writer.WriteLineAsync(string.Join(",", student.tostring()));
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Fail to read the file:");
+                            Console.WriteLine(e.Message);
+
+                        }
+
                     }
-                }            
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine("Fail to write the file:");
                 Console.WriteLine(e.Message);
-
             }
-				
-        }
 
-        public void Reload() {
-            ReadTxt(this.filepath);        
         }
-
-        public void Cleardata()
+        /// <summary>
+        /// Reload data from the file
+        /// </summary>
+        public void Reload()
+        {
+            this.Cleardata();
+            ReadTxt(this.filepath);
+        }
+        /// <summary>
+        /// Clear data in students
+        /// </summary>
+        private void Cleardata()
         {
             this.students.Clear();
         }
-
-        public Student getStudent(int i){
+        /// <summary>
+        /// Get student's data
+        /// </summary>
+        /// <param name="i">Student index in students list</param>
+        /// <returns>The copy of one of students instead of the real student itself</returns>
+        public Student getStudent(int i)
+        {
             //return this.students.ElementAt(i);
             Student s = new Student(this.students.ElementAt(i).getID(), this.students.ElementAt(i).getName(), this.students.ElementAt(i).getChinese(), this.students.ElementAt(i).getMathematics(), this.students.ElementAt(i).getEnglish());
-            s.CalculateGrade(0,0,0);
+            /*需要改掉*/
+            s.setAverage(this.students.ElementAt(i).getAverage());
             return s;
-        
+
         }
     }
 }

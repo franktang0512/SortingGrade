@@ -13,22 +13,22 @@ namespace ScoreSorting
 {
     public partial class MainForm : Form
     {
-        public string path;//../../TestResult.txt
-        private ScoreSortingControll control = new ScoreSortingControll("../../TestResult.txt");
-        private DataGridViewRowCollection rows;
-
+        private ScoreSortingControll control;
+        /// <summary>
+        /// Initialize component and constructor MainForm
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            MakeTable();
         }
-        //load the original data
+        /// <summary>
+        /// Load data in the table
+        /// </summary>
         private void MakeTable()
         {
-            rows = dataGridView1.Rows;
             for (int i = 0; i < this.control.getStudentsCount(); i++)
             {
-                rows.Add(new Object[] { 
+                this.dataGridView1.Rows.Add(new Object[] { 
                     this.control.getStudent(i).getID(), 
                     this.control.getStudent(i).getName(), 
                     this.control.getStudent(i).getChinese(), 
@@ -37,11 +37,12 @@ namespace ScoreSorting
                 });
             }
         }
-        //complete the table with average and rank
+        /// <summary>
+        /// Complete the table with average and rank
+        /// </summary>
         public void MakeWholeTable()
         {
-            //rows = dataGridView1.Rows;
-            this.rows.Clear();
+            this.dataGridView1.Rows.Clear();
             int rank = 0;
             
             for (int i = 0; i < this.control.getStudentsCount(); i++)
@@ -49,7 +50,7 @@ namespace ScoreSorting
                 if (i == 0)
                 {
                     rank += 1;
-                    rows.Add(new Object[] { 
+                    this.dataGridView1.Rows.Add(new Object[] { 
                         this.control.getStudent(i).getID(), 
                         this.control.getStudent(i).getName(), 
                         this.control.getStudent(i).getChinese(), 
@@ -64,19 +65,19 @@ namespace ScoreSorting
                 {
                     if (this.control.getStudent(i).getAverage() == this.control.getStudent(i - 1).getAverage())
                     {
-                        rows.Add(new Object[] { 
+                        this.dataGridView1.Rows.Add(new Object[] { 
                             this.control.getStudent(i).getID(), 
                             this.control.getStudent(i).getName(), 
                             this.control.getStudent(i).getChinese(), 
                             this.control.getStudent(i).getMathematics(), 
                             this.control.getStudent(i).getEnglish(),
                             this.control.getStudent(i).getAverage(),
-                            rank
+                            ++rank
                         });
 
                     }
                     else {
-                        rows.Add(new Object[] { 
+                        this.dataGridView1.Rows.Add(new Object[] { 
                             this.control.getStudent(i).getID(), 
                             this.control.getStudent(i).getName(), 
                             this.control.getStudent(i).getChinese(), 
@@ -96,16 +97,30 @@ namespace ScoreSorting
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.control.SaveTxt();
+            try {
+                this.control.SaveTxt();
+            }
+            catch {
+                MessageBox.Show("Sorry ! Can not save any file");
+            
+            }
+
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                this.dataGridView1.Rows.Clear();
+                this.control.Reload();
+                MessageBox.Show("Reload the file");
+                this.MakeTable();
+            }
+            catch {
+                MessageBox.Show("No file has been loaded.Open a file first");
+            
+            }
 
-            this.rows.Clear();
-            this.control.Cleardata();
-            this.control.Reload();
-            this.MakeTable();
 
         }
 
@@ -129,7 +144,7 @@ namespace ScoreSorting
             }
             catch
             {
-
+                MessageBox.Show("Can't sort any data. Recommend opening a file first");
             }
         }
 
@@ -140,7 +155,13 @@ namespace ScoreSorting
 
         private void Open_Click(object sender, EventArgs e)
         {
-
+            OpenFileDialog openFileDialog1= new OpenFileDialog();
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.control = new ScoreSortingControll(@"" + openFileDialog1.FileName);
+                MessageBox.Show("Open the file:"+openFileDialog1.FileName);
+                MakeTable();
+            }  
         }
     }
 }

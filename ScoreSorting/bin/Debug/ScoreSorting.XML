@@ -4,6 +4,21 @@
         <name>ScoreSorting</name>
     </assembly>
     <members>
+        <member name="M:ScoreSorting.MainForm.#ctor">
+            <summary>
+            Initialize component and constructor MainForm
+            </summary>
+        </member>
+        <member name="M:ScoreSorting.MainForm.MakeTable">
+            <summary>
+            Load data in the table
+            </summary>
+        </member>
+        <member name="M:ScoreSorting.MainForm.MakeWholeTable">
+            <summary>
+            Complete the table with average and rank
+            </summary>
+        </member>
         <member name="F:ScoreSorting.MainForm.components">
             <summary>
             設計工具所需的變數。
@@ -20,6 +35,110 @@
             此為設計工具支援所需的方法 - 請勿使用程式碼編輯器
             修改這個方法的內容。
             </summary>
+        </member>
+        <member name="F:ScoreSorting.ScoreSortingControll.filepath">
+            <summary>
+            Where the file is
+            </summary>
+        </member>
+        <member name="F:ScoreSorting.ScoreSortingControll.ContentTitle">
+            <summary>
+            Titles of table colums
+            </summary>
+        </member>
+        <member name="F:ScoreSorting.ScoreSortingControll.students">
+            <summary>
+            All students in list
+            </summary>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.#ctor(System.String)">
+            <summary>
+            Constructor for building students's data in the filepath
+            </summary>
+            <param name="filepath">Where the file going to be opened is</param>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.getStudents">
+            <summary>
+            Get students in list
+            </summary>
+            <returns>students</returns>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.setStudent(System.Collections.Generic.List{ScoreSorting.Student})">
+            <summary>
+            Set the students' data if there's any change on them
+            </summary>
+            <param name="s">Students which has changed to the list</param>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.getStudentsCount">
+            <summary>
+            Get total count of sutdents
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.CalculateGrades(System.String,System.String,System.String)">
+            <summary>
+            Calculate students' average with the weights
+            </summary>
+            <param name="ch">Chinese weights</param>
+            <param name="ma">Math weights</param>
+            <param name="en">English weights</param>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.Sort">
+            <summary>
+            Sort the data with students' average and their ID
+            </summary>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.ReadTxt(System.String)">
+            <summary>
+            Read the file in the filepath
+            </summary>
+            <param name="filepath">Filepath where the file's going to use</param>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.SaveTxt">
+            <summary>
+            Save data of stuents if there's any change
+            </summary>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.Reload">
+            <summary>
+            Reload data from the file
+            </summary>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.Cleardata">
+            <summary>
+            Clear data in students
+            </summary>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.getStudent(System.Int32)">
+            <summary>
+            Get student's data
+            </summary>
+            <param name="i">Student index in students list</param>
+            <returns>The copy of one of students instead of the real student itself</returns>
+        </member>
+        <member name="M:ScoreSorting.Student.#ctor(System.String,System.String,System.Double,System.Double,System.Double)">
+            <summary>
+            Constuctor student's data 
+            </summary>
+            <param name="ID">Student's ID number</param>
+            <param name="name">Student's name</param>
+            <param name="Chinese">Student's Chinese grade</param>
+            <param name="Mathematics">Student's Mathematics grade</param>
+            <param name="English">Student's English grade</param>
+        </member>
+        <member name="M:ScoreSorting.Student.CalculateGrade(System.Double,System.Double,System.Double)">
+            <summary>
+            Calculate Student's average if it doesn't have the value
+            </summary>
+            <param name="ch">Chinese Weight</param>
+            <param name="ma">Mathematics Weight</param>
+            <param name="en">English Weight</param>
+        </member>
+        <member name="M:ScoreSorting.Student.tostring">
+            <summary>
+            Make student's data in to string 
+            </summary>
+            <returns>Studeunt's data string</returns>
         </member>
         <member name="F:ScoreSorting.Weighted.components">
             <summary>
