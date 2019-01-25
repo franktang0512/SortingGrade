@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ScoreSorting
 {
+    /// <summary>
+    /// For the functions which will be used in the Grade Sorting system
+    /// </summary>
     public class ScoreSortingControll
     {
         /// <summary>
