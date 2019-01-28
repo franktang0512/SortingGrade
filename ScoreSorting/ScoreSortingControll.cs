@@ -210,11 +210,13 @@ namespace ScoreSorting
 
         public void ModifyStudent(int index, Student s)
         {
-            List<Student> st = this.students;
+            this.students.ElementAt(index).setID(s.getID());
+            this.students.ElementAt(index).setName(s.getName());
+            this.students.ElementAt(index).setChinese(s.getChinese());
+            this.students.ElementAt(index).setMath(s.getMathematics());
+            this.students.ElementAt(index).setEnglish(s.getEnglish());
 
-            //this.students.ElementAt(index) = s;
-            Console.WriteLine(this.students.ElementAt(index).getChinese());
-            //this.setStudent(s);
+
         }
     }
 }

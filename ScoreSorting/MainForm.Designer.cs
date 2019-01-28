@@ -70,6 +70,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(743, 268);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
             // 學號
             // 
@@ -105,11 +106,13 @@
             // 
             this.平均.HeaderText = "平均";
             this.平均.Name = "平均";
+            this.平均.ReadOnly = true;
             // 
             // 名次
             // 
             this.名次.HeaderText = "名次";
             this.名次.Name = "名次";
+            this.名次.ReadOnly = true;
             // 
             // toolStrip1
             // 

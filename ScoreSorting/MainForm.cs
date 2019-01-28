@@ -20,6 +20,15 @@ namespace ScoreSorting
         public MainForm()
         {
             InitializeComponent();
+
+            dataGridView1.Columns["平均"].ReadOnly = true;
+            dataGridView1.Columns["名次"].ReadOnly = true;
+
+            dataGridView1.Columns["國文"].ReadOnly = false;
+            dataGridView1.Columns["數學"].ReadOnly = false;
+            dataGridView1.Columns["英文"].ReadOnly = false;
+            dataGridView1.Columns["姓名"].ReadOnly = false;
+            dataGridView1.Columns["學號"].ReadOnly = false;
         }
         /// <summary>
         /// Load data in the table
@@ -98,12 +107,14 @@ namespace ScoreSorting
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 this.control.SaveTxt();
             }
-            catch {
+            catch
+            {
                 MessageBox.Show("Sorry ! Can not save any file");
-            
+
             }
 
         }
@@ -117,9 +128,10 @@ namespace ScoreSorting
                 MessageBox.Show("Reload the file");
                 this.MakeTable();
             }
-            catch {
+            catch
+            {
                 MessageBox.Show("No file has been loaded.Open a file first");
-            
+
             }
 
 
@@ -156,13 +168,83 @@ namespace ScoreSorting
 
         private void Open_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1= new OpenFileDialog();
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 this.control = new ScoreSortingControll(@"" + openFileDialog1.FileName);
-                MessageBox.Show("Open the file:"+openFileDialog1.FileName);
+                MessageBox.Show("Open the file:" + openFileDialog1.FileName);
                 MakeTable();
-            }  
+            }
+        }
+        
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            for (int i = 0; i < this.control.getStudentsCount(); i++)
+            {
+                if (this.control.getStudent(i).getID().Equals(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()))
+                {
+                    Student s = this.control.getStudent(i);
+                    if (e.ColumnIndex == 2 || e.ColumnIndex == 3 || e.ColumnIndex == 4)
+                    {
+                        try
+                        {
+                            try { double checkentry = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()); }
+                            catch { MessageBox.Show("數值格式錯誤"); }
+
+                            switch (e.ColumnIndex)
+                            {
+                                case 0:
+                                    s.setID(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                                    this.control.ModifyStudent(i, s);
+                                    break;
+                                case 1:
+                                    s.setName(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                                    this.control.ModifyStudent(i, s);
+                                    break;
+                                case 2:
+                                    s.setChinese(Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
+                                    this.control.ModifyStudent(i, s);
+                                    break;
+                                case 3:
+                                    s.setMath(Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
+                                    this.control.ModifyStudent(i, s);
+                                    break;
+                                case 4:
+                                    s.setEnglish(Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
+                                    this.control.ModifyStudent(i, s);
+                                    break;
+                                default:
+                                    break;
+
+                            }
+                            this.dataGridView1.Rows.Clear();
+                            this.MakeTable();
+
+                        }
+                        catch(Exception ex)
+                        {
+                            switch (e.ColumnIndex)
+                            {
+                                case 2:
+                                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = s.getChinese();
+                                    break;
+                                case 3:
+                                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = s.getMathematics();
+                                    break;
+                                case 4:
+                                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = s.getEnglish();
+                                    break;
+                                default: break;
+
+                            }
+
+                            
+                            
+
+                        }
+                    }
+                }
+            }
         }
     }
 }

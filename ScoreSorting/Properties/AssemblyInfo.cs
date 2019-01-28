@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 變更這些屬性的值即可修改組件的相關
 // 資訊。
 [assembly: AssemblyTitle("ScoreSorting")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("成績排序")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ScoreSorting")]
@@ -17,7 +17,7 @@ using System.Runtime.InteropServices;
 // 將 ComVisible 設定為 false 會使得這個組件中的型別
 // 對 COM 元件而言為不可見。如果您需要從 COM 存取這個組件中
 // 的型別，請在該型別上將 ComVisible 屬性設定為 true。
-[assembly: ComVisible(false)]
+[assembly: ComVisible(true)]
 
 // 下列 GUID 為專案公開 (Expose) 至 COM 時所要使用的 typelib ID
 [assembly: Guid("712e0d08-5451-45e4-8e38-acca03a16fe6")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // 您可以指定所有的值，也可以依照以下的方式，使用 '*' 將組建和修訂編號
 // 指定為預設值:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.0.0.0")]
+[assembly: AssemblyFileVersion("0.0.0.0")]

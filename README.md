@@ -4,6 +4,9 @@
 
 
 異動日誌
+##  2019-01-25 Franky[0.0.2.6] 
+### Added - 去除hardcoding filepath，補加開啟檔案功能
+
 ##  2019-01-25 Franky[0.0.2.5] 
 ### Added - 加補註解
 

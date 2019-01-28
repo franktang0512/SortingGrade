@@ -3,7 +3,7 @@
   <asmv1:assemblyIdentity name="ScoreSorting.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ScoreSorting" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="ScoreSorting" version="0.0.0.0" language="neutral" processorArchitecture="msil" />
     <commandLine file="ScoreSorting.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScoreSorting.exe" size="23040">
-      <assemblyIdentity name="ScoreSorting" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScoreSorting.exe" size="24576">
+      <assemblyIdentity name="ScoreSorting" version="0.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>CxSD6kWp965Ya50hl52APPv13mkAwtZ0npbUpw5Ppe4=</dsig:DigestValue>
+        <dsig:DigestValue>BUrhiejm63+G7YcW+yfqXrEpyZgqccTaA1Ih6f2N1eQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
