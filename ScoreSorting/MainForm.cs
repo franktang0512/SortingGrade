@@ -14,6 +14,7 @@ namespace ScoreSorting
     public partial class MainForm : Form
     {
         private ScoreSortingControll control;
+        Weighted WeightedForm;
         /// <summary>
         /// Initialize component and constructor MainForm
         /// </summary>
@@ -147,7 +148,7 @@ namespace ScoreSorting
             try
             {
                 //Show WeightedForm and get weights
-                Weighted WeightedForm = new Weighted();
+                WeightedForm = new Weighted();
                 WeightedForm.ShowDialog();
 
                 this.control.CalculateGrades(WeightedForm.getChineseWeight(), WeightedForm.getMathWeight(), WeightedForm.getEnglishWeight());
