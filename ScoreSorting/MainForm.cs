@@ -176,7 +176,7 @@ namespace ScoreSorting
                 MakeTable();
             }
         }
-        
+
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             for (int i = 0; i < this.control.getStudentsCount(); i++)
@@ -184,67 +184,64 @@ namespace ScoreSorting
                 if (this.control.getStudent(i).getID().Equals(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()))
                 {
                     Student s = this.control.getStudent(i);
-                    if (e.ColumnIndex == 2 || e.ColumnIndex == 3 || e.ColumnIndex == 4)
+
+                    try
                     {
-                        try
+                        if (e.ColumnIndex == 2 || e.ColumnIndex == 3 || e.ColumnIndex == 4)
                         {
                             try { double checkentry = Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()); }
-                            catch { MessageBox.Show("數值格式錯誤"); }
-
-                            switch (e.ColumnIndex)
+                            catch
                             {
-                                case 0:
-                                    s.setID(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-                                    this.control.ModifyStudent(i, s);
-                                    break;
-                                case 1:
-                                    s.setName(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-                                    this.control.ModifyStudent(i, s);
-                                    break;
-                                case 2:
-                                    s.setChinese(Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
-                                    this.control.ModifyStudent(i, s);
-                                    break;
-                                case 3:
-                                    s.setMath(Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
-                                    this.control.ModifyStudent(i, s);
-                                    break;
-                                case 4:
-                                    s.setEnglish(Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
-                                    this.control.ModifyStudent(i, s);
-                                    break;
-                                default:
-                                    break;
-
+                                MessageBox.Show("數值格式錯誤");
+                                switch (e.ColumnIndex)
+                                {
+                                    case 2:
+                                        dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = s.getChinese();
+                                        break;
+                                    case 3:
+                                        dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = s.getMathematics();
+                                        break;
+                                    case 4:
+                                        dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = s.getEnglish();
+                                        break;
+                                    default: break;
+                                }
                             }
-                            this.dataGridView1.Rows.Clear();
-                            this.MakeTable();
-
                         }
-                        catch(Exception ex)
+                        switch (e.ColumnIndex)
                         {
-                            switch (e.ColumnIndex)
-                            {
-                                case 2:
-                                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = s.getChinese();
-                                    break;
-                                case 3:
-                                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = s.getMathematics();
-                                    break;
-                                case 4:
-                                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = s.getEnglish();
-                                    break;
-                                default: break;
+                            case 0:
+                                s.setID(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
 
-                            }
+                                break;
+                            case 1:
+                                s.setName(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
 
-                            
-                            
+                                break;
+                            case 2:
+                                s.setChinese(Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
+
+                                break;
+                            case 3:
+                                s.setMath(Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
+
+                                break;
+                            case 4:
+                                s.setEnglish(Convert.ToDouble(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString()));
+
+                                break;
+                            default:
+                                break;
 
                         }
+                        this.control.ModifyStudent(i, s);
+                        this.dataGridView1.Rows.Clear();
+                        this.MakeTable();
                     }
+                    catch { Console.WriteLine("Invalid operation expection"); }
                 }
             }
         }
     }
 }
+
