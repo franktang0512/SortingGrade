@@ -1,9 +1,12 @@
 # CHNAGELOG
-##  2019-01-28 Franky[0.0.3.0] 
-### Added - 學生成績修改
+##  2019-01-28 Franky[0.0.4.0] 
+### Added - 聚合性增加(減少耦合)Weighted物件
 
 
 異動日誌
+##  2019-01-28 Franky[0.0.3.0] 
+### Added - 學生成績修改
+
 ##  2019-01-25 Franky[0.0.2.6] 
 ### Added - 去除hardcoding filepath，補加開啟檔案功能
 
