@@ -99,7 +99,7 @@ namespace ScoreSorting
         /// Read the file in the filepath
         /// </summary>
         /// <param name="filepath">Filepath where the file's going to use</param>
-        async void ReadTxt(string filepath)
+        public async void ReadTxt(string filepath)
         {
             if (File.Exists(filepath))
             {
