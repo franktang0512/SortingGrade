@@ -207,7 +207,11 @@ namespace ScoreSorting
             return s;
 
         }
-
+        /// <summary>
+        /// Modify Student
+        /// </summary>
+        /// <param name="index">Student index in students</param>
+        /// <param name="s"> Student object for modifing students' </param>
         public void ModifyStudent(int index, Student s)
         {
             this.students.ElementAt(index).setID(s.getID());
