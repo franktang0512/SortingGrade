@@ -207,5 +207,14 @@ namespace ScoreSorting
             return s;
 
         }
+
+        public void ModifyStudent(int index, Student s)
+        {
+            List<Student> st = this.students;
+
+            //this.students.ElementAt(index) = s;
+            Console.WriteLine(this.students.ElementAt(index).getChinese());
+            //this.setStudent(s);
+        }
     }
 }

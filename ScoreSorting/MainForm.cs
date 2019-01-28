@@ -43,57 +43,58 @@ namespace ScoreSorting
         public void MakeWholeTable()
         {
             this.dataGridView1.Rows.Clear();
-            int rank = 0;
-            
+            int rank = 0, SameRankCount = 1;
+
             for (int i = 0; i < this.control.getStudentsCount(); i++)
             {
                 if (i == 0)
                 {
                     rank += 1;
-                    this.dataGridView1.Rows.Add(new Object[] { 
-                        this.control.getStudent(i).getID(), 
-                        this.control.getStudent(i).getName(), 
-                        this.control.getStudent(i).getChinese(), 
-                        this.control.getStudent(i).getMathematics(), 
+                    this.dataGridView1.Rows.Add(new Object[] {
+                        this.control.getStudent(i).getID(),
+                        this.control.getStudent(i).getName(),
+                        this.control.getStudent(i).getChinese(),
+                        this.control.getStudent(i).getMathematics(),
                         this.control.getStudent(i).getEnglish(),
                         this.control.getStudent(i).getAverage(),
                         rank
                     });
-
                 }
                 else
                 {
                     if (this.control.getStudent(i).getAverage() == this.control.getStudent(i - 1).getAverage())
                     {
-                        this.dataGridView1.Rows.Add(new Object[] { 
-                            this.control.getStudent(i).getID(), 
-                            this.control.getStudent(i).getName(), 
-                            this.control.getStudent(i).getChinese(), 
-                            this.control.getStudent(i).getMathematics(), 
+                        SameRankCount += 1;
+                        this.dataGridView1.Rows.Add(new Object[] {
+                            this.control.getStudent(i).getID(),
+                            this.control.getStudent(i).getName(),
+                            this.control.getStudent(i).getChinese(),
+                            this.control.getStudent(i).getMathematics(),
                             this.control.getStudent(i).getEnglish(),
                             this.control.getStudent(i).getAverage(),
                             rank
                         });
 
                     }
-                    else {
-                        this.dataGridView1.Rows.Add(new Object[] { 
-                            this.control.getStudent(i).getID(), 
-                            this.control.getStudent(i).getName(), 
-                            this.control.getStudent(i).getChinese(), 
-                            this.control.getStudent(i).getMathematics(), 
+                    else
+                    {
+                        rank += SameRankCount;
+                        SameRankCount = 1;
+                        this.dataGridView1.Rows.Add(new Object[] {
+                            this.control.getStudent(i).getID(),
+                            this.control.getStudent(i).getName(),
+                            this.control.getStudent(i).getChinese(),
+                            this.control.getStudent(i).getMathematics(),
                             this.control.getStudent(i).getEnglish(),
                             this.control.getStudent(i).getAverage(),
-                            ++rank
+                            rank
                         });
-                    
+
                     }
-
-
                 }
-
             }
         }
+
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
