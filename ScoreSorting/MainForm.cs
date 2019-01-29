@@ -104,7 +104,7 @@ namespace ScoreSorting
                 }
             }
         }
-        
+
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             for (int i = 0; i < this.control.getStudentsCount(); i++)
@@ -173,16 +173,13 @@ namespace ScoreSorting
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void openToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 this.control = new ScoreSortingControll(@"" + openFileDialog1.FileName);
-                this.MakeTable();
+
+                MessageBox.Show("Open the file:" + openFileDialog1.FileName);
+                MakeTable();
             }
         }
 
@@ -191,6 +188,7 @@ namespace ScoreSorting
             try
             {
                 this.control.Save();
+
             }
             catch
             {
@@ -235,7 +233,6 @@ namespace ScoreSorting
             catch
             {
                 MessageBox.Show("No file has been loaded.Open a file first");
-
             }
         }
 
@@ -245,4 +242,3 @@ namespace ScoreSorting
         }
     }
 }
-
