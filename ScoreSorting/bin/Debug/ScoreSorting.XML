@@ -4,6 +4,11 @@
         <name>ScoreSorting</name>
     </assembly>
     <members>
+        <member name="T:ScoreSorting.FileIOBuilder">
+            <summary>
+            Expand the formate of files
+            </summary>
+        </member>
         <member name="M:ScoreSorting.MainForm.#ctor">
             <summary>
             Initialize component and constructor MainForm
@@ -46,11 +51,6 @@
             Where the file is
             </summary>
         </member>
-        <member name="F:ScoreSorting.ScoreSortingControll.ContentTitle">
-            <summary>
-            Titles of table colums
-            </summary>
-        </member>
         <member name="F:ScoreSorting.ScoreSortingControll.students">
             <summary>
             All students in list
@@ -91,17 +91,6 @@
         <member name="M:ScoreSorting.ScoreSortingControll.Sort">
             <summary>
             Sort the data with students' average and their ID
-            </summary>
-        </member>
-        <member name="M:ScoreSorting.ScoreSortingControll.ReadTxt(System.String)">
-            <summary>
-            Read the file in the filepath
-            </summary>
-            <param name="filepath">Filepath where the file's going to use</param>
-        </member>
-        <member name="M:ScoreSorting.ScoreSortingControll.SaveTxt">
-            <summary>
-            Save data of stuents if there's any change
             </summary>
         </member>
         <member name="M:ScoreSorting.ScoreSortingControll.Reload">
