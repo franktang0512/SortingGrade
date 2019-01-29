@@ -104,80 +104,7 @@ namespace ScoreSorting
                 }
             }
         }
-
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.control.SaveTxt();
-            }
-            catch
-            {
-                MessageBox.Show("Sorry ! Can not save any file");
-
-            }
-
-        }
-
-        private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.dataGridView1.Rows.Clear();
-                this.control.Reload();
-                MessageBox.Show("Reload the file");
-                this.MakeTable();
-            }
-            catch
-            {
-                MessageBox.Show("No file has been loaded.Open a file first");
-
-            }
-
-
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
-
-        private void sortToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //Show WeightedForm and get weights
-                WeightedForm = new Weighted();
-                WeightedForm.ShowDialog();
-
-                this.control.CalculateGrades(WeightedForm.getChineseWeight(), WeightedForm.getMathWeight(), WeightedForm.getEnglishWeight());
-                this.control.Sort();
-                //complete the table of all students with average and rank
-                MakeWholeTable();
-            }
-            catch
-            {
-                MessageBox.Show("Can't sort any data. Recommend opening a file first");
-            }
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Program Name: Score Sorter\nProgram Design: Frank Tang\nProgram Version:0.0.1", "", MessageBoxButtons.OKCancel, MessageBoxIcon.None);
-        }
-
-        private void Open_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                this.control = new ScoreSortingControll(@"" + openFileDialog1.FileName);
-                MessageBox.Show("Open the file:" + openFileDialog1.FileName);
-                MakeTable();
-            }
-        }
-
+        
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             for (int i = 0; i < this.control.getStudentsCount(); i++)
@@ -242,6 +169,79 @@ namespace ScoreSorting
                     catch { Console.WriteLine("Invalid operation expection"); }
                 }
             }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.control = new ScoreSortingControll(@"" + openFileDialog1.FileName);
+                this.MakeTable();
+            }
+        }
+
+        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.control.Save();
+            }
+            catch
+            {
+                MessageBox.Show("Sorry ! Can not save any file");
+
+            }
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void sortingWeightsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Show WeightedForm and get weights
+                WeightedForm = new Weighted();
+                WeightedForm.ShowDialog();
+
+                this.control.CalculateGrades(WeightedForm.getChineseWeight(), WeightedForm.getMathWeight(), WeightedForm.getEnglishWeight());
+                this.control.Sort();
+                //complete the table of all students with average and rank
+                MakeWholeTable();
+            }
+            catch
+            {
+                MessageBox.Show("Can't sort any data. Recommend opening a file first");
+            }
+        }
+
+        private void reloadToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.dataGridView1.Rows.Clear();
+                this.control.Reload();
+                MessageBox.Show("Reload the file");
+                this.MakeTable();
+            }
+            catch
+            {
+                MessageBox.Show("No file has been loaded.Open a file first");
+
+            }
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Program Name: Score Sorter\nProgram Design: Frank Tang\nProgram Version:0.0.1", "", MessageBoxButtons.OKCancel, MessageBoxIcon.None);
         }
     }
 }
