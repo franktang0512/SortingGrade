@@ -121,6 +121,13 @@
             <param name="i">Student index in students list</param>
             <returns>The copy of one of students instead of the real student itself</returns>
         </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.ModifyStudent(System.Int32,ScoreSorting.Student)">
+            <summary>
+            Modify Student
+            </summary>
+            <param name="index">Student index in students</param>
+            <param name="s"> Student object for modifing students' </param>
+        </member>
         <member name="T:ScoreSorting.Student">
             <summary>
             For Student's data
