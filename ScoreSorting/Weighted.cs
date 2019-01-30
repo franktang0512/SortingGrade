@@ -49,19 +49,7 @@ namespace ScoreSorting
         private void OK_Click(object sender, EventArgs e)
         {
 
-            try
-            {
-                //check if users' input is numeric
-                double dtest = Convert.ToDouble(ch.Text.ToString());
-                dtest = Convert.ToDouble(ma.Text.ToString());
-                dtest = Convert.ToDouble(en.Text.ToString());
-            }
-            catch
-            {
-                //Remind users to type in numeric
-                MessageBox.Show("Tired? Please enter numeric things and try again thanks", "", MessageBoxButtons.OKCancel, MessageBoxIcon.None);
-            }
-            this.Close();
+
         }
     }
 }

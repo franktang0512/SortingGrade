@@ -17,6 +17,9 @@ namespace ScoreSorting
         /// </summary>
         string filepath;
 
+        /// <summary>
+        /// For File IO
+        /// </summary>
         FileIOBuilder fileIObuilder;
 
         /// <summary>
@@ -42,6 +45,10 @@ namespace ScoreSorting
 
         }
 
+        /// <summary>
+        /// Read File
+        /// </summary>
+        /// <param name="filepath">filepath</param>
         public void ReadFile(string filepath)
         {
             //todo: 阻止使用者輸入表格以外的檔案
@@ -59,6 +66,9 @@ namespace ScoreSorting
 
         }
 
+        /// <summary>
+        /// Save File
+        /// </summary>
         public void Save() {
             FileIO fio;
             fio = fileIObuilder.CreateFileIO(Path.GetExtension(this.filepath));
@@ -122,89 +132,7 @@ namespace ScoreSorting
             /*Sort ordered by averages*/
             this.setStudent(this.getStudents().OrderByDescending(o => o.getAverage()).ThenBy(o => o.getID()).ToList());
         }
-        /// <summary>
-        /// Read the file in the filepath
-        /// </summary>
-        /// <param name="filepath">Filepath where the file's going to use</param>
-        //public async void ReadTxt(string filepath)
-        //{
-        //    if (File.Exists(filepath))
-        //    {
-        //        try
-        //        {
-        //            using (StreamReader reader = File.OpenText(filepath))
-        //            {
-        //                string title = await reader.ReadLineAsync();
-        //                ContentTitle = title.Split(',');
 
-        //                while (!reader.EndOfStream)
-        //                {
-        //                    string filecontent = reader.ReadLine();
-        //                    string[] data = filecontent.Split(',');
-        //                    try
-        //                    {
-        //                        students.Add(new Student(data[0], data[1], Convert.ToDouble(data[2]), Convert.ToDouble(data[3]), Convert.ToDouble(data[4])));
-        //                    }
-        //                    catch (Exception e)
-        //                    {
-        //                        Console.WriteLine(e.Message);
-        //                        Console.WriteLine("Check if the string can be converted to double");
-        //                        break;
-
-        //                    }
-
-        //                }
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Console.WriteLine("Fail to read the file:");
-        //            Console.WriteLine(e.Message);
-
-        //        }
-
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("File does not exist");
-
-        //    }
-        //}
-        /// <summary>
-        /// Save data of stuents if there's any change
-        /// </summary>
-        //public async void SaveTxt()
-        //{
-        //    try
-        //    {
-        //        // 建立檔案串流
-        //        using (StreamWriter writer = File.CreateText(filepath))
-        //        {
-        //            // 寫入標頭
-        //            writer.WriteLine(string.Join(",", ContentTitle));
-        //            foreach (Student student in students)
-        //            {
-        //                try
-        //                {   //寫入學生資料
-        //                    await writer.WriteLineAsync(string.Join(",", student.tostring()));
-        //                }
-        //                catch (Exception e)
-        //                {
-        //                    Console.WriteLine("Fail to read the file:");
-        //                    Console.WriteLine(e.Message);
-
-        //                }
-
-        //            }
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Fail to write the file:");
-        //        Console.WriteLine(e.Message);
-        //    }
-
-        //}
         /// <summary>
         /// Reload data from the file
         /// </summary>
@@ -248,6 +176,7 @@ namespace ScoreSorting
             this.students.ElementAt(index).setEnglish(s.getEnglish());
 
 
-        }
+        }        
+    
     }
 }

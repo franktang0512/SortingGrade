@@ -51,6 +51,11 @@
             Where the file is
             </summary>
         </member>
+        <member name="F:ScoreSorting.ScoreSortingControll.fileIObuilder">
+            <summary>
+            For File IO
+            </summary>
+        </member>
         <member name="F:ScoreSorting.ScoreSortingControll.students">
             <summary>
             All students in list
@@ -61,6 +66,17 @@
             Constructor for building students's data in the filepath
             </summary>
             <param name="filepath">Where the file going to be opened is</param>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.ReadFile(System.String)">
+            <summary>
+            Read File
+            </summary>
+            <param name="filepath">filepath</param>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.Save">
+            <summary>
+            Save File
+            </summary>
         </member>
         <member name="M:ScoreSorting.ScoreSortingControll.getStudents">
             <summary>
