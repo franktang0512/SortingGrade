@@ -133,6 +133,27 @@
             <param name="index">Student index in students</param>
             <param name="s"> Student object for modifing students' </param>
         </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.ModifyData">
+            <summary>
+            Data have been modified
+            </summary>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.FileHandled">
+            <summary>
+            User has been asked to Saving File 
+            </summary>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.IsModified">
+            <summary>
+            Check the state if File has been changed
+            </summary>
+            <returns>Data Modified or not</returns>
+        </member>
+        <member name="M:ScoreSorting.ScoreSortingControll.SaveQuery">
+            <summary>
+            Query users if they have the next operation of the system 
+            </summary>
+        </member>
         <member name="T:ScoreSorting.Student">
             <summary>
             For Student's data
@@ -233,51 +254,6 @@
             Make student's data in to string 
             </summary>
             <returns>Studeunt's data string</returns>
-        </member>
-        <member name="T:ScoreSorting.Weighted">
-            <summary>
-            The form is for user to set the wighte of each subject
-            </summary>
-        </member>
-        <member name="M:ScoreSorting.Weighted.#ctor">
-            <summary>
-            Construct Weighted 
-            </summary>
-        </member>
-        <member name="M:ScoreSorting.Weighted.getChineseWeight">
-            <summary>
-            Chinese Weight from ch textbox
-            </summary>
-            <returns>Chinese Weight</returns>
-        </member>
-        <member name="M:ScoreSorting.Weighted.getMathWeight">
-            <summary>
-            Math Weight from ma textbox
-            </summary>
-            <returns>Math Weight</returns>
-        </member>
-        <member name="M:ScoreSorting.Weighted.getEnglishWeight">
-            <summary>
-            English Weight from en textbox
-            </summary>
-            <returns>English Weight</returns>
-        </member>
-        <member name="F:ScoreSorting.Weighted.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:ScoreSorting.Weighted.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:ScoreSorting.Weighted.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
         </member>
         <member name="T:ScoreSorting.Properties.Resources">
             <summary>

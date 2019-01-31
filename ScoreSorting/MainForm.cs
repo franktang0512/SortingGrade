@@ -14,8 +14,6 @@ namespace ScoreSorting
     public partial class MainForm : Form
     {
         private ScoreSortingControll control;
-        Weighted WeightedForm;
-        int savefile = 0;
 
         String ch_weight = "", ma_weight = "", en_weight = "";
 
@@ -27,7 +25,7 @@ namespace ScoreSorting
         {
             InitializeComponent();
             oldWidth = this.Width;
-            oldHeight = this.Height; 
+            oldHeight = this.Height;
             dataGridView1.Columns["平均"].ReadOnly = true;
             dataGridView1.Columns["名次"].ReadOnly = true;
 
@@ -41,7 +39,7 @@ namespace ScoreSorting
             this.panel1.Dock = DockStyle.Left;
             //this.WeightGroupBox.Dock = DockStyle.Right;
             //this.dataGridView1.Dock = DockStyle.Fill;
-                        
+
             //this.dataGridView1.Dock = DockStyle.None;
             this.menuStrip1.Dock = DockStyle.Top;
         }
@@ -125,18 +123,18 @@ namespace ScoreSorting
             }
         }
 
-       
+
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.savefile == 1)
+            if (this.control != null)
             {
-                if (this.IsSavingFile())
+                if (this.control.IsModified())
                 {
-                    
-                    this.SaveFile();
+                    this.control.SaveQuery();
                 }
             }
+
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -169,14 +167,14 @@ namespace ScoreSorting
 
             this.Chinese.Width = Convert.ToInt32(x * Chinese.Width);
             this.Chinese.Height = Convert.ToInt32(y * Chinese.Height);
-            
-            
+
+
             this.ma.Height = Convert.ToInt32(y * ma.Height);
             this.ma.Width = Convert.ToInt32(x * ma.Width);
-            
+
             this.Math.Height = Convert.ToInt32(y * Math.Height);
             this.Math.Width = Convert.ToInt32(x * Math.Width);
-            
+
             this.en.Height = Convert.ToInt32(y * en.Height);
             this.en.Width = Convert.ToInt32(x * en.Width);
 
@@ -189,18 +187,20 @@ namespace ScoreSorting
 
         private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SaveFile();
+            try {
+                this.control.Save();
+                this.control.FileHandled();
+            }
+            catch {
+                MessageBox.Show("No file has been loaded. Open a file first thanks.");
+            }
         }
 
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (this.savefile == 1)
+            if (this.control != null)
             {
-                if (this.IsSavingFile())
-                {
-                    
-                    this.SaveFile();
-                }
+                this.Save();
             }
             this.Dispose();
         }
@@ -210,12 +210,7 @@ namespace ScoreSorting
 
         private void reloadToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (this.savefile == 1)
-            {
-                if(this.IsSavingFile()){
-                    this.SaveFile();
-                }
-            }
+            this.Save();
             try
             {
                 this.dataGridView1.Rows.Clear();
@@ -225,26 +220,21 @@ namespace ScoreSorting
             }
             catch
             {
-                MessageBox.Show("No file has been loaded.Open a file first");
+                MessageBox.Show("No file has been loaded.");
             }
         }
 
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Program Name: Score Sorter\nProgram Design: Frank Tang\nProgram Version:0.0.1", "", MessageBoxButtons.OKCancel, MessageBoxIcon.None);
+            MessageBox.Show("Program Name: Score Sorter\nProgram Design: Frank Tang\nProgram Version:0.0.7.0", "ScoreSorting Infomation");
         }
 
         private void Sort_Click(object sender, EventArgs e)
         {
-            if (this.savefile == 1)
-            {
-                if (this.IsSavingFile())
-                {
-                    this.SaveFile();
-                }
-            }
+
             if (this.control != null)
             {
+                this.Save();
                 try
                 {
                     //check if users' input is numeric
@@ -259,15 +249,15 @@ namespace ScoreSorting
                     //complete the table of all students with average and rank
                     MakeWholeTable();
 
-                    //TODO: sort here
                 }
                 catch
                 {
                     //Remind users to type in numeric
-                    MessageBox.Show("Tired? Please enter numeric things and try again thanks", "", MessageBoxButtons.OKCancel, MessageBoxIcon.None);
+                    MessageBox.Show("Tired? Please enter numeric things and try again thanks");
                 }
             }
-            else {
+            else
+            {
                 MessageBox.Show("Open a file first thanks.");
             }
 
@@ -333,40 +323,31 @@ namespace ScoreSorting
                         }
                         this.control.ModifyStudent(i, s);
 
-                        
+
                         if ((this.ch_weight != "") && (this.ma_weight != "") && (this.en_weight != ""))
                         {
                             this.MakeWholeTable();
                         }
 
-                        this.savefile = 1;
+                        this.control.ModifyData();
                     }
                     catch { Console.WriteLine("Invalid operation expection"); }
                 }
             }
         }
-
-        private void SaveFile() {
+        private void Save()
+        {
             try
             {
-                this.control.Save();
-                this.savefile = 0;
+                if (this.control.IsModified())
+                {
+                    this.control.SaveQuery();
+                }
             }
             catch
             {
-                MessageBox.Show("Sorry ! Can not save any file");
+                MessageBox.Show("Open a file fist, thanks");
             }
         }
-
-        private bool IsSavingFile() {
-
-            Console.WriteLine("{0}",savefile);
-
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Title = "Save the Current File?";
-            saveFileDialog1.ShowDialog();
-
-            
-            return false; }
     }
 }

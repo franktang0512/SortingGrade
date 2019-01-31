@@ -27,6 +27,8 @@ namespace ScoreSorting
         /// </summary>
         List<Student> students;
 
+        bool modifiedFlag = false;
+
         /// <summary>
         /// Constructor for building students's data in the filepath
         /// </summary>
@@ -59,9 +61,10 @@ namespace ScoreSorting
                 fio.setFilePath(filepath);
                 this.students = fio.getFileToList();
             }
-            catch {
+            catch
+            {
                 System.Windows.Forms.MessageBox.Show("Choose a right file");
-            
+
             }
 
         }
@@ -69,10 +72,11 @@ namespace ScoreSorting
         /// <summary>
         /// Save File
         /// </summary>
-        public void Save() {
+        public void Save()
+        {
             FileIO fio;
             fio = fileIObuilder.CreateFileIO(Path.GetExtension(this.filepath));
-            fio.setFilePath(filepath);  
+            fio.setFilePath(filepath);
             fio.SaveListToFile(this.students);
         }
 
@@ -176,7 +180,56 @@ namespace ScoreSorting
             this.students.ElementAt(index).setEnglish(s.getEnglish());
 
 
-        }        
-    
+        }
+
+
+        /// <summary>
+        /// Data have been modified
+        /// </summary>
+        public void ModifyData()
+        {
+            this.modifiedFlag = true;
+        }
+        /// <summary>
+        /// User has been asked to Saving File 
+        /// </summary>
+        public void FileHandled()
+        {
+            this.modifiedFlag = false;
+        }
+
+        /// <summary>
+        /// Check the state if File has been changed
+        /// </summary>
+        /// <returns>Data Modified or not</returns>
+        public bool IsModified()
+        {
+            return this.modifiedFlag;
+        }
+
+        /// <summary>
+        /// Query users if they have the next operation of the system 
+        /// </summary>
+        public void SaveQuery()
+        {
+            if (this.IsModified())
+            {
+                System.Windows.Forms.DialogResult MsgBoxResult = System.Windows.Forms.MessageBox.Show("Save the file for the previous changes before next operaton?", "Save the file?", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
+                if (MsgBoxResult == System.Windows.Forms.DialogResult.Yes)
+                {
+                    try
+                    {
+                        this.Save();
+                    }
+                    catch
+                    {
+                        System.Windows.Forms.MessageBox.Show("Sorry ! Can not save any file");
+                    }
+                }
+                this.FileHandled();
+
+            }
+        }
+
     }
 }
