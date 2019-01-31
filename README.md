@@ -1,9 +1,20 @@
 # CHNAGELOG
-##  2019-01-28 Franky[0.0.4.0] 
-### Added - 聚合性增加(減少耦合)Weighted物件
-
+##  2019-01-31 Franky[0.0.7.0] 
+### Added - 詢問使用者在下一個操作前是否要儲存修改的檔案
 
 異動日誌
+##  2019-01-30 Franky[0.0.6.0] 
+### Added - 修該成績後自動排序、加入Panel及 Dock屬性排版
+
+##  2019-01-30 Franky[0.0.5.1] 
+### Added - 改變ToolStrip to MenuStrip for using easily 
+
+##  2019-01-29 Franky[0.0.5.0] 
+### Added - 增加檔案格式的錯誤訊息
+
+##  2019-01-29 Franky[0.0.4.1] 
+### Added - 加入簡單工廠以利擴充格式(IOBuilder)
+
 ##  2019-01-28 Franky[0.0.3.0] 
 ### Added - 學生成績修改
 
