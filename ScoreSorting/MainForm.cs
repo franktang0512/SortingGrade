@@ -15,8 +15,9 @@ namespace ScoreSorting
     {
         private ScoreSortingControll control;
 
-        String ch_weight = "", ma_weight = "", en_weight = "";
+        double chWieght,maWeight,enWeight;
 
+        Weighted all_weight;
         double oldWidth, oldHeight;
         /// <summary>
         /// Initialize component and constructor MainForm
@@ -24,6 +25,7 @@ namespace ScoreSorting
         public MainForm()
         {
             InitializeComponent();
+            
             oldWidth = this.Width;
             oldHeight = this.Height;
             dataGridView1.Columns["平均"].ReadOnly = true;
@@ -34,13 +36,13 @@ namespace ScoreSorting
             dataGridView1.Columns["英文"].ReadOnly = false;
             dataGridView1.Columns["姓名"].ReadOnly = false;
             dataGridView1.Columns["學號"].ReadOnly = false;
-            this.panel3.Dock = DockStyle.Right;
-            this.panel2.Dock = DockStyle.Fill;
+            //this.panel3.Dock = DockStyle.Right;
+            //this.panel2.Dock = DockStyle.Fill;
             this.panel1.Dock = DockStyle.Left;
             //this.WeightGroupBox.Dock = DockStyle.Right;
             //this.dataGridView1.Dock = DockStyle.Fill;
 
-            //this.dataGridView1.Dock = DockStyle.None;
+            this.dataGridView1.Dock = DockStyle.None;
             this.menuStrip1.Dock = DockStyle.Top;
         }
 
@@ -66,7 +68,7 @@ namespace ScoreSorting
         /// </summary>
         public void MakeWholeTable()
         {
-            this.control.CalculateGrades(this.ch_weight, this.ma_weight, this.en_weight);
+            this.control.CalculateGrades(this.chWieght.ToString(), this.maWeight.ToString(), this.enWeight.ToString());
 
             this.control.Sort();
 
@@ -134,13 +136,15 @@ namespace ScoreSorting
                     this.control.SaveQuery();
                 }
             }
+            this.control = new ScoreSortingControll(@"" + "../../TestResult.txt"/*openFileDialog1.FileName*/);
+            MakeTable();
 
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                this.control = new ScoreSortingControll(@"" + openFileDialog1.FileName);
-                MakeTable();
-            }
+            //OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            //if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //{
+            //    this.control = new ScoreSortingControll(@"" + openFileDialog1.FileName);
+            //    MakeTable();
+            //}
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -148,38 +152,11 @@ namespace ScoreSorting
             double x = (this.Width / oldWidth);
             double y = (this.Height / oldHeight);
 
-            this.panel3.Height = Convert.ToInt32(y * panel3.Height);
-            this.panel3.Width = Convert.ToInt32(x * panel3.Width);
-            this.panel2.Height = Convert.ToInt32(y * panel2.Height);
-            this.panel2.Width = Convert.ToInt32(x * panel2.Width);
             this.panel1.Height = Convert.ToInt32(y * menuStrip1.Height);
             this.panel1.Width = Convert.ToInt32(x * menuStrip1.Width);
 
             this.dataGridView1.Width = Convert.ToInt32(x * dataGridView1.Width);
             this.dataGridView1.Height = Convert.ToInt32(y * dataGridView1.Height);
-
-            this.WeightGroupBox.Width = Convert.ToInt32(x * WeightGroupBox.Width);
-            this.WeightGroupBox.Height = Convert.ToInt32(y * WeightGroupBox.Height);
-
-
-            this.ch.Width = Convert.ToInt32(x * ch.Width);
-            this.ch.Height = Convert.ToInt32(y * ch.Height);
-
-            this.Chinese.Width = Convert.ToInt32(x * Chinese.Width);
-            this.Chinese.Height = Convert.ToInt32(y * Chinese.Height);
-
-
-            this.ma.Height = Convert.ToInt32(y * ma.Height);
-            this.ma.Width = Convert.ToInt32(x * ma.Width);
-
-            this.Math.Height = Convert.ToInt32(y * Math.Height);
-            this.Math.Width = Convert.ToInt32(x * Math.Width);
-
-            this.en.Height = Convert.ToInt32(y * en.Height);
-            this.en.Width = Convert.ToInt32(x * en.Width);
-
-            this.English.Width = Convert.ToInt32(x * English.Width);
-            this.English.Height = Convert.ToInt32(y * English.Height);
 
             oldWidth = this.Width;
             oldHeight = this.Height;
@@ -204,10 +181,7 @@ namespace ScoreSorting
             }
             this.Dispose();
         }
-
-        /*can delete the function*/
-        private void sortingWeightsToolStripMenuItem_Click(object sender, EventArgs e) { }
-
+        
         private void reloadToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.Save();
@@ -227,46 +201,14 @@ namespace ScoreSorting
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Program Name: Score Sorter\nProgram Design: Frank Tang\nProgram Version:0.0.7.0", "ScoreSorting Infomation");
-        }
-
-        private void Sort_Click(object sender, EventArgs e)
-        {
-
-            if (this.control != null)
-            {
-                this.Save();
-                try
-                {
-                    //check if users' input is numeric
-                    double dtest = Convert.ToDouble(ch.Text.ToString());
-                    dtest = Convert.ToDouble(ma.Text.ToString());
-                    dtest = Convert.ToDouble(en.Text.ToString());
-
-                    this.ch_weight = ch.Text.ToString();
-                    this.ma_weight = ma.Text.ToString();
-                    this.en_weight = en.Text.ToString();
-
-                    //complete the table of all students with average and rank
-                    MakeWholeTable();
-
-                }
-                catch
-                {
-                    //Remind users to type in numeric
-                    MessageBox.Show("Tired? Please enter numeric things and try again thanks");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Open a file first thanks.");
-            }
-
-        }
+        }        
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+
             for (int i = 0; i < this.control.getStudentsCount(); i++)
             {
+                
                 if (this.control.getStudent(i).getID().Equals(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()))
                 {
                     Student s = this.control.getStudent(i);
@@ -294,10 +236,11 @@ namespace ScoreSorting
                                 }
                             }
                         }
-
+                        Console.WriteLine("學號****************");
                         switch (e.ColumnIndex)
                         {
                             case 0:
+                                
                                 s.setID(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
 
                                 break;
@@ -324,8 +267,9 @@ namespace ScoreSorting
                         this.control.ModifyStudent(i, s);
 
 
-                        if ((this.ch_weight != "") && (this.ma_weight != "") && (this.en_weight != ""))
+                        if ((chWieght.ToString() != "") && (this.maWeight.ToString() != "") && (enWeight.ToString() != ""))
                         {
+                            
                             this.MakeWholeTable();
                         }
 
@@ -347,6 +291,27 @@ namespace ScoreSorting
             catch
             {
                 MessageBox.Show("Open a file fist, thanks");
+            }
+        }
+
+        private void sortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (this.control != null)
+            {
+                this.Save();
+
+                all_weight = new Weighted();
+
+                all_weight.ShowDialog();
+                if (all_weight.SetWeight(out chWieght, out maWeight, out enWeight)) {
+
+                }
+                MakeWholeTable();
+            }
+            else
+            {
+                MessageBox.Show("Open a file first thanks.");
             }
         }
     }

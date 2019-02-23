@@ -255,6 +255,32 @@
             </summary>
             <returns>Studeunt's data string</returns>
         </member>
+        <member name="M:ScoreSorting.Weighted.SetWeight(System.Double@,System.Double@,System.Double@)">
+            <summary>
+            
+            </summary>
+            <param name="chWeight"></param>
+            <param name="mathWeight"></param>
+            <param name="enWeight"></param>
+            <returns></returns>
+        </member>
+        <member name="F:ScoreSorting.Weighted.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ScoreSorting.Weighted.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ScoreSorting.Weighted.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:ScoreSorting.Properties.Resources">
             <summary>
               用於查詢當地語系化字串等的強型別資源類別

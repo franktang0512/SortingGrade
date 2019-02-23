@@ -93,6 +93,12 @@
     <Compile Include="ScoreSortingControll.cs" />
     <Compile Include="ScoreSortingModel.cs" />
     <Compile Include="ScoreSortingView.cs" />
+    <Compile Include="Weighted.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Weighted.Designer.cs">
+      <DependentUpon>Weighted.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -106,6 +112,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Weighted.resx">
+      <DependentUpon>Weighted.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

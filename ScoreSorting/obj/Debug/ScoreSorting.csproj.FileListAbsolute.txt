@@ -69,3 +69,4 @@ C:\Users\franky\Desktop\test\SortingGrade\ScoreSorting\obj\Debug\ScoreSorting.ex
 C:\Users\franky\Desktop\test\SortingGrade\ScoreSorting\obj\Debug\ScoreSorting.application
 C:\Users\franky\Desktop\test\SortingGrade\ScoreSorting\bin\Debug\ScoreSorting.XML
 C:\Users\franky\Desktop\SortingGrade\ScoreSorting\bin\Debug\ScoreSorting.XML
+C:\Users\franky\Desktop\test\SortingGrade\ScoreSorting\obj\Debug\ScoreSorting.Weighted.resources
