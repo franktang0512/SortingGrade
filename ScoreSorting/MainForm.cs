@@ -136,15 +136,12 @@ namespace ScoreSorting
                     this.control.SaveQuery();
                 }
             }
-            this.control = new ScoreSortingControll(@"" + "../../TestResult.txt"/*openFileDialog1.FileName*/);
-            MakeTable();
-
-            //OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            //if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //{
-            //    this.control = new ScoreSortingControll(@"" + openFileDialog1.FileName);
-            //    MakeTable();
-            //}
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.control = new ScoreSortingControll(@"" + openFileDialog1.FileName);
+                MakeTable();
+            }
         }
 
         private void Form1_Resize(object sender, EventArgs e)
